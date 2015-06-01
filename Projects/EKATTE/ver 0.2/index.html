@@ -1,0 +1,143 @@
+<html>
+<head>
+   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+   <title>
+      Справочник на населените места в България
+   </title>
+   <style>
+      body {
+      background-color: deepskyblue;
+      }
+      
+      #panel{
+         position: absolute;
+         top: 25px;
+         left: 50%;
+         margin-left: -180px;
+         z-index: 5;
+         background-color: #454545;
+         padding-left: 15px;
+         padding-right: 15px;
+         border: 4px solid #151515;
+         font-family: monospace;
+         color:aliceblue;
+      }
+      
+      #results {
+         width: 151px;
+         display: absolute;
+         position: absolute;
+         margin-left: 135px;
+         border: 1px solid #151515;
+      }
+      
+      #results .item {
+         padding: 3px;
+         font-family: monospace;
+         color:aliceblue;
+         background-color: #454545;
+         border-bottom: 1px solid #151515;
+      }
+      
+      #results .item:last-child {
+         border-bottom: 0px;
+      }
+      
+      #results .item:hover {
+         background-color: #656565;
+         cursor: pointer;
+      }
+      
+      #search{
+         position: absolute;
+         top: 100px;
+         left: 40%;
+         margin-left: -180px;
+         z-index: 0;
+      }
+      
+      #search .item{
+         margin-top: 20px;
+         background-color: #454545;
+         padding-left: 15px;
+         padding-right: 15px;
+         border: 4px solid #151515;
+         font-family: monospace;
+         color:aliceblue;
+      }
+   </style>
+   
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   
+   <script type="text/javascript">
+      var MIN_LENGTH = 1;
+      $( document ).ready(function() {
+         $("#input").keyup(function() {
+            var keyword = $("#input").val();
+            if (keyword.length >= MIN_LENGTH) {
+               $.get( "name.php", { 
+                  keyword: keyword 
+               } )
+                  .done(function( data ) {
+                  $('#results').html('');
+                  var results = jQuery.parseJSON(data);
+                  $(results).each(function(key, value) {
+                     $('#results').append('<div class="item">' + value + '</div>');
+                  })
+                  
+                  $('.item').click(function() {
+                     var text = $(this).html();
+                     $('#input').val(text);
+                  })
+                  
+               });
+            } else {
+               $('#results').html('');
+            }
+         });
+         
+         $("#input").blur(function(){
+            $("#results").slideUp(500);
+         })
+            .focus(function() {		
+            $("#results").slideDown(500);
+         });
+         
+      });
+      
+      
+      function search() {
+         var keyword = $("#input").val();
+            $.get( "search.php", { 
+               keyword: keyword 
+            } )
+               .done(function( data ) {
+               $('#search').html('');
+               var results = jQuery.parseJSON(data);
+               //console.log(results);
+               $(results).each(function(key, value) {
+                  $('#search').append('<div class="item"><h2>' + value["t_v_m"] + ' ' + value["name"] +  '</h2><p>Област ' + value["oblast"] + ', ' + value["region"] + ' регионн, средна надморска височина '+ value["altitude"] +'00 метра </p></hr></div>');
+               })
+            });
+      };
+   </script>
+</head>
+<body>
+   <div id="panel">
+      <label for="input">Въведете селище:</label>
+      <input name="input" id="input" type="text"/>
+      <input type="button" value="Търси" onclick="search();"/>
+      
+      <div id="results">
+      </div>
+   </div>
+   
+   <div id="search">
+      <center><div class="item">
+         <h2>гр. София</h2> 
+         <p>Област София (столица), Югозападен регионн, средна надморска височина 600 метра</p>
+         </hr>
+         </div></center>
+   </div>
+</body>   
+</html>
