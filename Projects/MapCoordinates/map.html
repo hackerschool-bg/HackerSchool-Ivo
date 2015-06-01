@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Telebid map</title>
+     <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+      #panel {
+        position: absolute;
+        top: 25px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #454545;
+        padding: 5px;
+        border: 4px solid #151515;
+        font-family: monospace;
+        color:aliceblue;
+      }
+    </style>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+     
+<!--<script type="text/javascript" src="mapInfo.js"> 
+  -->
+<script type="text/javascript" src="map.js"></script>  
+
+  </head>
+  <body>
+      <div id="panel">
+         <p>Find the nearest <b style="color: yellow">Kaufland</b> store  </p>
+      <label for="combobox">State: </label>
+      <select id="State" name="combobox" onchange="modifyCombobox();">
+          <option value="">State</option>
+      </select>
+      
+      <label for="combobox"><b> City: </b></label>
+      <select id="City" name="combobox" onclick="parseJson();">
+          <option value="">city </option>
+      </select>
+      </div>
+    <div id="map-canvas"></div>
+      </body>
+</html>
