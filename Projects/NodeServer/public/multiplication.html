@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>
+			Index
+		</title>
+	<script type="text/javascript">
+		function result(){
+			var url = window.location.href;
+			console.log('wee');
+
+			var result = document.getElementById("result");
+
+
+			url = url.replace(/^http\S+\?/,'');
+			url = url.split('&');
+			url[0]=url[0].replace(/\D+/g,'');
+			url[1]=url[1].replace(/\D+/g,'');
+			result.innerHTML=url[0] + ' * ' + url[1] + ' = ' + Number(Number(url[0]) *  Number(url[1]));
+		}
+	</script>
+	</head>
+	<body style="background-color: #454545;color: white;text-shadow: 2px 2px #000000;" onload="result()">
+		<center>
+		<h1>Multiplication</h1>
+		<br/>
+		<p>The result is: <div id="result"></div></p>
+		</center>
+	</body>
+</html>
