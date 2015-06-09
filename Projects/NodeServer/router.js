@@ -53,7 +53,7 @@ function handleNotFound(res){
 	res(404, { "Content-Type": "text/plain" }, "ERROR 404");
 }
 
-function handleFile(res, file){
+function handleFile(res, file) {
 
 	// get the content-type of the file
 	var mimeType = mime.lookup(file);
@@ -80,7 +80,7 @@ function handleFile(res, file){
    			
 
 	// handle hidden files and filetypes according to the specifications in config.js; 
-    if( (filename[filename.length - 1].charAt(0) === '.' && config.hidden) || isAllowed ){
+    if( (filename[filename.length - 1].charAt(0) === '.' && config.hidden) || isAllowed ) {
  		try {
 			fs.readFile(file, function(error, data) {
  				res(200, { "Content-Type": mimeType }, data);
@@ -96,7 +96,7 @@ function handleFile(res, file){
     }
 }
 
-function handleDirectory(res, file){
+function handleDirectory(res, file) {
 	// get the landing page specified in config.js
 	var index = config.index.split(', ');
 
