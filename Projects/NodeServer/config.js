@@ -4,7 +4,13 @@ module.exports = config = {
 	'address': 'localhost',
 
 // the server port
-    'port': 8080,
+    'port': 8082,
+
+// public directory that the users can access; reqests to all other directories 
+// that aren't children of the public directory will not be handled.
+	'publicDir': 'public', 
+
+// Keep-
 
 // whether requests for directories should be handled    
     'dirs': false,
@@ -14,10 +20,6 @@ module.exports = config = {
 
 // show hidden files
     'hidden': true,
-
-// public directory that the users can access; reqests to all other directories 
-// that aren't children of the public directory will not be handled.
-	'publicDir': 'public', 
 
 // default file that will be searched in response to requests for (http://address:port) or (http://address:port/); 
 // ordered from least important to most important (must be separated by [, ])   

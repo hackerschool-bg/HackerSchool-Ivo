@@ -36,7 +36,7 @@ exports.socketHandler = function (route, options) {
 		parser.onHeadersComplete = function (info) {
 			//console.log('HEADERS SENT');
 
-			console.log(totalConnections++);
+			//console.log(totalConnections++);
 
 		  	info.body = new Stream();
 		  	info.body.readable = true;
@@ -163,7 +163,7 @@ exports.socketHandler = function (route, options) {
 				}
 		  	}
 
-
+		/*
 		if (config.autoConnection) {
 			if (req.shouldKeepAlive && (hasContentLength || hasTransferEncoding || statusCode == 304)) {
 			  	headers["Connection"] = "keep-alive";
@@ -172,7 +172,10 @@ exports.socketHandler = function (route, options) {
 				headers["Connection"] = "close";
 	         	req.shouldKeepAlive = false;
 			}
-		}
+		}*/
+
+		// *TESTTING* all connections are set to keep-alive
+		headers["Connection"] = "keep-alive";
 
 		// get the status code and throw an error if it is not icluded in STATUS_CODES
 		var reasonPhrase = STATUS_CODES[statusCode];
