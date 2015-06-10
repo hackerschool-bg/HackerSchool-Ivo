@@ -1,0 +1,1 @@
+cmd_Release/obj.target/nodeCppSum.node := g++ -shared -pthread -rdynamic -m64  -Wl,-soname=nodeCppSum.node -o Release/obj.target/nodeCppSum.node -Wl,--start-group Release/obj.target/nodeCppSum/sum.o -Wl,--end-group 

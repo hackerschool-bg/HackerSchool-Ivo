@@ -1,0 +1,1 @@
+cmd_Release/obj.target/nodeCppMultiplication.node := g++ -shared -pthread -rdynamic -m64  -Wl,-soname=nodeCppMultiplication.node -o Release/obj.target/nodeCppMultiplication.node -Wl,--start-group Release/obj.target/nodeCppMultiplication/multiplication.o -Wl,--end-group 
