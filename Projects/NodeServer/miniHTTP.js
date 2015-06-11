@@ -2,6 +2,7 @@ var HTTPParser = process.binding("http_parser").HTTPParser;
 var Stream = require('stream').Stream;
 var urlParse = require('url').parse;
 
+var cppMath = require('./cppMath.js');
 var STATUS_CODES = require('./statusCode.js').STATUS_CODES;
 
 var defaultConfig = {
@@ -54,7 +55,16 @@ exports.socketHandler = function (route, options) {
 		  	//console.log(req.url.pathname);
 		  	//console.log('headers: ', client);
 		  	//console.log('Request method:', req.method);
-		  	route(req, res);
+
+		  	
+		  	if(/cppCall/.test(req.url.query)) {
+		  		console.log("call cpp");
+		  		cppMath.calculate(req, res);
+
+		  	} else {
+		  		console.log("call normal");
+		  		route(req, res);
+		  	}
 		}
 
 		// display the body of the HTTP response
