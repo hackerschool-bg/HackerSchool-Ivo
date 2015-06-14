@@ -4,12 +4,12 @@ $username = "root";
 $password = "letmein";
 $dbname = "Parsed_JSON";
 $apiKey="fmk5m3vspagctp5q3bp3m867";
-$requestURL = "https://api.remix.bestbuy.com/v1/stores?apiKey=fmk5m3vspagctp5q3bp3m867&show=address,city,hours,lat,lng,name,region,storeId&pageSize=100&page=5&format=json";
+$requestURL = "https://api.remix.bestbuy.com/v1/stores?apiKey=fmk5m3vspagctp5q3bp3m867&show=address,city,hours,lat,lng,name,region,storeId&pageSize=100&page=6&format=json";
 
-// Create connection
+// create a connection to the database
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Check connection
+// check the connection
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -58,9 +58,9 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 
-//transfer the JSON codew into $latestJSON & update the local JSON file that will be used by the JavaScript function
+//transfer the JSON code into $latestJSON & update the local JSON file that will be used by the JavaScript function
 $latestJSON = json_encode($dbValuesArray);
-file_put_contents("latestJSON.json", $latestJSON);
+file_put_contents("latestJSON2.json", $latestJSON);
 //   echo "]<br>";
 
 //$jsondata = file_get_contents('stores.json');
