@@ -1,4 +1,4 @@
-<?PHP
+<?php
 
 ini_set("display_errors",1);
 ini_set('default_charset', 'utf-8');
@@ -12,6 +12,6 @@ if($connection) {
     echo "No connection with the database.<br/><br/>";
 }
 
-runSqlFile('./initSqlIndexes.sql', $connection);
+runSqlFile('./dropSqlTables.sql', $connection);
 
 ?>
